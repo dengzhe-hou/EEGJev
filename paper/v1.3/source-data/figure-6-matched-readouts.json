@@ -1,0 +1,35 @@
+{
+  "tasks": 15,
+  "sources": 7,
+  "participants": 37,
+  "seeds": 3,
+  "eegjev_ba_pct": 68.31467094969653,
+  "readouts": [
+    {
+      "name": "EEGNet",
+      "ba_pct": 58.62007214319641,
+      "effect_pp": 9.69459880650012,
+      "within_sources_ci_pp": [
+        7.428473024478604,
+        12.215572834692782
+      ],
+      "with_sources_ci_pp": [
+        -1.550507,
+        24.157854
+      ]
+    },
+    {
+      "name": "Ordinary head",
+      "ba_pct": 58.623686599187266,
+      "effect_pp": 9.690984350509273,
+      "within_sources_ci_pp": [
+        7.155678003687188,
+        12.229216763780734
+      ],
+      "with_sources_ci_pp": [
+        -1.952612,
+        23.893182
+      ]
+    }
+  ]
+}

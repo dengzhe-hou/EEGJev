@@ -1,0 +1,13 @@
+model,matched_tasks,minus_eegnet_test_estimate_pp,minus_eegnet_test_ci95_lower_pp,minus_eegnet_test_ci95_upper_pp,minus_eegnet_validation_estimate_pp,minus_eegnet_validation_ci95_lower_pp,minus_eegnet_validation_ci95_upper_pp,minus_eegjev_test_estimate_pp,minus_eegjev_test_ci95_lower_pp,minus_eegjev_test_ci95_upper_pp,minus_eegjev_validation_estimate_pp,minus_eegjev_validation_ci95_lower_pp,minus_eegjev_validation_ci95_upper_pp
+"EEGNet, one model per task",59,,,,,,,+2.0,+0.2,+3.7,+2.4,+0.9,+4.0
+EEGJev,59,-2.0,-3.7,-0.2,-2.4,-4.0,-0.9,,,,,,
+Ordinary classifier,59,-0.8,-2.2,+0.6,-1.0,-2.2,+0.2,+1.1,-0.2,+2.5,+1.5,+0.6,+2.4
+"EEGJev and ordinary, averaged",59,+0.2,-1.3,+1.6,-0.2,-1.4,+1.0,+2.1,+1.4,+2.9,+2.2,+1.6,+2.9
+"LaBraM, one model per task",59,-1.3,-2.5,-0.2,-2.4,-3.1,-1.7,+0.6,-0.7,+2.0,0.0,-1.5,+1.5
+"NeuroLM, instruction-tuned",59,-6.4,-8.1,-4.7,-7.8,-9.7,-5.8,-4.4,-6.0,-2.9,-5.3,-6.6,-4.1
+"METIS, fixed weights",59,-18.6,-21.6,-15.8,-20.6,-22.9,-18.5,-16.7,-19.2,-14.2,-18.2,-20.6,-15.8
+"LEAF, level 0",51,-14.8,-17.8,-12.0,-17.5,-20.0,-15.0,-12.5,-15.0,-10.0,-14.5,-17.4,-11.7
+"LEAF, level 1",51,-14.8,-17.8,-11.9,-17.0,-19.7,-14.2,-12.5,-15.2,-10.0,-13.9,-16.6,-11.4
+"LEAF, level 2",51,-15.2,-18.4,-12.2,-16.8,-19.6,-14.0,-12.9,-15.5,-10.2,-13.8,-16.4,-11.3
+"EEGJev, per-source encoders",59,-1.8,-3.0,-0.7,-2.6,-3.7,-1.5,+0.1,-1.2,+1.4,-0.2,-0.8,+0.5
+"Ordinary, per-source encoders",59,-0.3,-1.5,+0.9,+0.1,-1.6,+1.8,+1.7,+0.2,+3.1,+2.5,+1.7,+3.3

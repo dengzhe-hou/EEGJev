@@ -1,0 +1,17 @@
+model,labelled_windows_per_class,weibo2014_1s_balanced_accuracy_pct,weibo2014_2s_balanced_accuracy_pct,weibo2014_4s_balanced_accuracy_pct,dreyer2023a_1s_balanced_accuracy_pct,dreyer2023a_2s_balanced_accuracy_pct,dreyer2023a_4s_balanced_accuracy_pct
+EEGJev,0,51.0,50.2,49.9,52.4,50.6,49.6
+EEGJev,5,50.7,50.4,52.2,54.9,52.4,52.3
+EEGJev,10,51.1,51.3,53.1,57.5,54.3,53.5
+EEGJev,20,51.9,52.9,54.2,60.8,57.0,55.4
+Ordinary classifier,0,53.1,55.5,56.9,58.1,57.2,55.2
+Ordinary classifier,5,52.2,55.2,56.4,60.4,58.5,55.7
+Ordinary classifier,10,53.5,57.8,58.4,65.1,62.1,58.1
+Ordinary classifier,20,55.4,60.7,60.6,69.9,66.3,61.2
+EEGNet (bciciv models),0,52.5,57.5,57.3,53.5,53.3,55.9
+EEGNet (bciciv models),5,51.9,53.9,57.7,56.1,55.1,54.3
+EEGNet (bciciv models),10,53.0,55.2,60.0,58.6,57.2,56.6
+EEGNet (bciciv models),20,54.3,57.4,62.5,61.4,60.0,59.1
+LaBraM (bciciv models),0,50.0,50.0,49.9,50.0,50.0,50.5
+LaBraM (bciciv models),5,50.6,50.0,50.5,53.4,51.4,50.4
+LaBraM (bciciv models),10,51.1,49.9,50.9,55.4,52.0,50.9
+LaBraM (bciciv models),20,51.3,50.6,51.4,57.8,52.9,51.3

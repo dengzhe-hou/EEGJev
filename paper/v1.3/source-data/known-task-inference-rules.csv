@@ -1,0 +1,7 @@
+rule_and_model,metric,test_seed_0,test_seed_1,test_seed_2,validation_seed_0,validation_seed_1,validation_seed_2
+"D4 full-label check, EEGNet",D4 group-balanced score,66.4,66.8,66.8,66.6,66.3,66.9
+"D4 full-label check, EEGJev",D4 group-balanced score,65.2,65.7,65.3,65.0,65.2,65.0
+"D4 full-label check, ordinary classifier",D4 group-balanced score,65.8,65.6,65.2,65.1,65.4,65.4
+"D1 averaging, EEGJev and ordinary",D1 balanced accuracy,65.6,65.2,65.0,65.7,65.7,66.4
+"D2 averaging, EEGJev and ordinary",D2 balanced accuracy,63.5,63.4,62.7,64.6,65.3,65.3
+D2 joint score of the averaged answers,D2 joint score,42.4,42.5,41.5,45.0,45.5,45.8
