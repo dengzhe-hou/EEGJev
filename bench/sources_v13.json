@@ -1,0 +1,242 @@
+{
+  "benchmark": "EEGJev-Bench",
+  "version": "1.3-final-20261115",
+  "version_note": "The catalog lists verified releases and retained snapshots. Obtain the recordings from the providers under their terms.",
+  "sources": [
+    {
+      "source": "asym",
+      "provider": "OpenNeuro",
+      "accession": "ds007172",
+      "url": "https://openneuro.org/datasets/ds007172",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "bciciv",
+      "provider": "BCI Competition IV",
+      "accession": "Dataset 1",
+      "url": "https://www.bbci.de/competition/iv/desc_1.html",
+      "snapshots": [
+        {
+          "release": "Dataset 1 1000 Hz calibration archive",
+          "archive_url": "https://www.bbci.de/competition/download/competition_iv/BCICIV_1calib_1000Hz_mat.zip",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "chbmit",
+      "provider": "PhysioNet",
+      "accession": "chbmit",
+      "url": "https://physionet.org/content/chbmit/",
+      "snapshots": [
+        {
+          "release": "1.0.0",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "cogbci",
+      "provider": "Zenodo",
+      "accession": "7413650",
+      "url": "https://zenodo.org/records/7413650",
+      "snapshots": [
+        {
+          "release": "4",
+          "doi": "10.5281/zenodo.7413650",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "dementia",
+      "provider": "OpenNeuro",
+      "accession": "ds004504",
+      "url": "https://openneuro.org/datasets/ds004504",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "deprest",
+      "provider": "OpenNeuro",
+      "accession": "ds003478",
+      "url": "https://openneuro.org/datasets/ds003478",
+      "snapshots": [
+        {
+          "release": "1.1.0",
+          "doi": "10.18112/openneuro.ds003478.v1.1.0",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "dortmund",
+      "provider": "OpenNeuro",
+      "accession": "ds005385",
+      "url": "https://openneuro.org/datasets/ds005385",
+      "snapshots": [
+        {
+          "release": "1.0.3",
+          "doi": "10.18112/openneuro.ds005385.v1.0.3",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "erpcore",
+      "provider": "OSF",
+      "accession": "9f5w7",
+      "url": "https://erpinfo.org/erp-core",
+      "snapshots": [
+        {
+          "components": {
+            "OSF": "9f5w7",
+            "MNE N2pc": "10.18112/openneuro.ds003066.v1.0.0"
+          },
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "exo",
+      "provider": "OpenNeuro",
+      "accession": "ds007788",
+      "url": "https://openneuro.org/datasets/ds007788",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        },
+        {
+          "release": "1.0.1",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "gal",
+      "provider": "Figshare",
+      "accession": "988376",
+      "url": "https://doi.org/10.6084/m9.figshare.c.988376",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "hbn",
+      "provider": "Healthy Brain Network",
+      "accession": "HBN-EEG R1",
+      "url": "https://fcon_1000.projects.nitrc.org/indi/cmi_healthy_brain_network/MRI_EEG.html",
+      "snapshots": [
+        {
+          "release": "1.0.1",
+          "doi": "10.18112/openneuro.ds005505.v1.0.1",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "is",
+      "provider": "OpenNeuro",
+      "accession": "ds006033",
+      "url": "https://openneuro.org/datasets/ds006033",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "lemon",
+      "provider": "INDI",
+      "accession": "MPI-LEMON",
+      "url": "https://fcon_1000.projects.nitrc.org/indi/retro/MPI_LEMON.html",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "mom",
+      "provider": "OpenNeuro",
+      "accession": "ds006768",
+      "url": "https://openneuro.org/datasets/ds006768",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "photo",
+      "provider": "OpenNeuro",
+      "accession": "ds006036",
+      "url": "https://openneuro.org/datasets/ds006036",
+      "snapshots": [
+        {
+          "source_snapshot_cutoff": "2026-11-08T05:00:00Z",
+          "version_evidence": "archived_object_versions"
+        },
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "sleep",
+      "provider": "PhysioNet",
+      "accession": "sleep-edfx",
+      "url": "https://physionet.org/content/sleep-edfx/",
+      "snapshots": [
+        {
+          "release": "1.0.0",
+          "version_evidence": "provider_release"
+        }
+      ]
+    },
+    {
+      "source": "surprise",
+      "provider": "OpenNeuro",
+      "accession": "ds006394",
+      "url": "https://openneuro.org/datasets/ds006394",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "vrnf",
+      "provider": "OpenNeuro",
+      "accession": "ds006839",
+      "url": "https://openneuro.org/datasets/ds006839",
+      "snapshots": [
+        {
+          "version_evidence": "retained_snapshot"
+        }
+      ]
+    },
+    {
+      "source": "vwm",
+      "provider": "OpenNeuro",
+      "accession": "ds003655",
+      "url": "https://openneuro.org/datasets/ds003655/versions/1.0.0",
+      "snapshots": [
+        {
+          "release": "1.0.0",
+          "doi": "10.18112/openneuro.ds003655.v1.0.0",
+          "version_evidence": "provider_release"
+        }
+      ]
+    }
+  ]
+}

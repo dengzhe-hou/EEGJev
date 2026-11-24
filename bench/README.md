@@ -1,6 +1,6 @@
 # EEGJev-Bench
 
-EEGJev-Bench v1.3 includes a corpus reader, native-recording rebuild, and scoring commands for all six question types. See the [rebuild and scoring guide](BUILDING.md) for the frozen metadata contract, raw recording recipes, and the synthetic CPU check.
+EEGJev-Bench v1.3 includes a corpus reader, native-recording rebuild, and scoring commands for all six question types. See the [rebuild and scoring guide](BUILDING.md) for the frozen metadata contract, raw recording recipes, and the synthetic CPU check. Start with the [one-page reproduction guide](REPRODUCTION.md) and [source catalog](sources_v13.json).
 
 Run the synthetic scoring example from the repository root with NumPy installed.
 
