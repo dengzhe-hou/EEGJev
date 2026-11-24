@@ -1,6 +1,6 @@
 # EEGJev-Bench
 
-This folder includes a reader for the v1.3 benchmark and the linked-view scorer for T1 and T2. The scorer first averages the linked views of a pair or event group, then averages equally over participants within each task, tasks within each source, and sources.
+EEGJev-Bench v1.3 includes a corpus reader, native-recording rebuild, and scoring commands for all six question types. See the [rebuild and scoring guide](BUILDING.md) for the frozen metadata contract, raw recording recipes, and the synthetic CPU check.
 
 Run the synthetic scoring example from the repository root with NumPy installed.
 
