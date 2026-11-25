@@ -4,13 +4,14 @@
 
 ### A System One Decision Model and Benchmark for Multi-Task EEG Question Answering
 
+<a href="https://arxiv.org/abs/2611.32100"><img src="https://img.shields.io/badge/arXiv-2611.32100-b31b1b?style=for-the-badge&amp;logo=arxiv" alt="arXiv preprint"></a>
 <a href="https://dengzhe-hou.github.io/EEGJev/"><img src="https://img.shields.io/badge/Project-Website-60877f?style=for-the-badge&amp;logo=githubpages" alt="Project website"></a>
 <a href="https://huggingface.co/dengzhe-hou/EEGJev"><img src="https://img.shields.io/badge/Hugging_Face-Model-c08a4a?style=for-the-badge&amp;logo=huggingface" alt="Hugging Face model"></a>
 <a href="https://huggingface.co/datasets/dengzhe-hou/EEGJev-Bench"><img src="https://img.shields.io/badge/Hugging_Face-Dataset-c08a4a?style=for-the-badge&amp;logo=huggingface" alt="Hugging Face dataset"></a>
 
 **19 public EEG sources &nbsp;·&nbsp; 17 scored sources &nbsp;·&nbsp; 6 question types**
 
-[Overview](#overview) · [Benchmark](#benchmark) · [Results](#results) · [Quick start](#quick-start) · [Reproducibility](#reproducibility-and-source-terms)
+[Overview](#overview) · [Benchmark](#benchmark) · [Results](#results) · [Quick start](#quick-start) · [Reproducibility](#reproducibility-and-source-terms) · [Contribute](CONTRIBUTING.md) · [Cite](CITATION.bib)
 
 </div>
 
@@ -78,6 +79,10 @@ python -I -B bench/examples/score_linked_demo.py
 ~~~
 
 The example returns T1 at 0.50 and T2 at 1.00. See [the benchmark guide](bench/README.md) for the scoring inputs and [the model guide](model/README.md) to run the trained model with local weights.
+
+## Contribute
+
+[Report a benchmark correction](https://github.com/dengzhe-hou/EEGJev/issues/new?template=benchmark-correction.yml) · [Propose a question paradigm](https://github.com/dengzhe-hou/EEGJev/issues/new?template=new-question-paradigm.yml) · [Contribution guide](CONTRIBUTING.md)
 
 ## Reproducibility and source terms
 

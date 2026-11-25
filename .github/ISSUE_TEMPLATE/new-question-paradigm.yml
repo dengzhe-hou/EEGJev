@@ -1,0 +1,23 @@
+name: New question paradigm
+description: Propose a question type or EEG task for the benchmark.
+title: "[New paradigm] "
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Public EEG source and access terms
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example question, candidates, and correct answer
+    validations:
+      required: true
+  - type: textarea
+    id: scoring
+    attributes:
+      label: Proposed split, scoring method, and controls
+      description: Describe the participant split and a control that would catch a shortcut.
+    validations:
+      required: true
