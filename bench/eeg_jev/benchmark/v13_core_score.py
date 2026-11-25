@@ -7,6 +7,10 @@ import numpy as np
 from .v13_joint_d2 import score_bundle
 
 
+def core_task_id(row):
+    return f"{row['source']}-{row['attribute']}-{row['length_s']}s"
+
+
 def aggregate_cells(values, cell_sources, eligible):
     by_source = defaultdict(list)
     for cell, value in values.items():
@@ -29,7 +33,7 @@ def score_core(rows, predictions, eligible, track):
     d2_rows, d2_answers = [], []
     for row in rows:
         source = row["source"]
-        cell = f"{source}-{row['attribute']}-{row['length_s']}s"
+        cell = core_task_id(row)
         if cell not in eligible:
             continue
         question_id = row["question_id"]

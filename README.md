@@ -82,7 +82,7 @@ The example returns T1 at 0.50 and T2 at 1.00. See [the benchmark guide](bench/R
 
 ## Contribute
 
-[Report a benchmark correction](https://github.com/dengzhe-hou/EEGJev/issues/new?template=benchmark-correction.yml) · [Propose a question paradigm](https://github.com/dengzhe-hou/EEGJev/issues/new?template=new-question-paradigm.yml) · [Contribution guide](CONTRIBUTING.md)
+[Report a benchmark correction](https://github.com/dengzhe-hou/EEGJev/issues/new?template=benchmark-correction.yml) · [Propose a question paradigm](https://github.com/dengzhe-hou/EEGJev/issues/new?template=new-question-paradigm.yml) · [Submit a validation result](CONTRIBUTING.md#submit-a-validation-result) · [Community leaderboard](bench/community/LEADERBOARD.md)
 
 ## Reproducibility and source terms
 
