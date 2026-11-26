@@ -20,47 +20,76 @@ def normalized_name(name):
     return CHANNEL_ALIASES.get(name.upper(), name.upper())
 
 
+def make_backbone():
+    backbone = CBraMod(in_dim=200, out_dim=200, d_model=200, dim_feedforward=800,
+                      seq_len=30, n_layer=12, nhead=8)
+    backbone.proj_out = nn.Identity()
+    return backbone
+
+
+class SourceBackbones(nn.Module):
+    """Route windows to the trained CBraMod for their source, one source at a time."""
+
+    def __init__(self, backbones):
+        super().__init__()
+        self.by_source = nn.ModuleDict(backbones)
+        self.current = None
+
+    @property
+    def patch_embedding(self):
+        return self.by_source[self.current].patch_embedding
+
+    @property
+    def encoder(self):
+        return self.by_source[self.current].encoder
+
+
 class LinkedEEGJev:
     def __init__(self, checkpoint, text_encoder):
         saved = torch.load(checkpoint, weights_only=True, map_location="cpu", mmap=True)
         config = saved["config"]
         layout = config["spatial_token"]["lengths"]
         self.montages = json.loads(Path(__file__).with_name("montages.json").read_text())
-        if set(self.montages) != set(layout) or config["model"]["start"] != "shared":
-            raise ValueError("Expected the shared v1.3 model and its registered channel layouts")
+        variant = config["model"]["start"]
+        if set(self.montages) != set(layout) or variant not in ("shared", "per_source"):
+            raise ValueError("Expected a v1.3 model and its registered channel layouts")
+        self.refusal_loaded = False
+        self.temporal = "new_input_embeddings" in saved
         names = sorted({normalized_name(c) for s in layout for c in self.montages[s]})
         indices = {name: i for i, name in enumerate(names)}
         self.channel_ids = {s: torch.tensor([indices[normalized_name(c)] for c in cs])
                             for s, cs in self.montages.items()}
         self.lengths = layout
-        backbone = CBraMod(in_dim=200, out_dim=200, d_model=200, dim_feedforward=800,
-                           seq_len=30, n_layer=12, nhead=8)
-        backbone.proj_out = nn.Identity()
-        base = SpatialTokenModel(backbone=backbone, readout="joint", backbone_trainable=False,
-                                 max_channels=len(names), max_patches=4)
-        # All trained stacks are restored, while mmap lets this run touch just the selected montage.
         with torch.device("meta"):
+            backbone = (make_backbone() if variant == "shared" else
+                        SourceBackbones({source: make_backbone() for source in layout}))
+            base = SpatialTokenModel(backbone=backbone, readout="joint", backbone_trainable=False,
+                                     max_channels=len(names), max_patches=4)
             base.decision.spatial = nn.ModuleDict({
                 f"{s}_{length}": hidden_stack(len(self.montages[s]) * length * FS)
                 for s, lengths in layout.items() for length in lengths
             })
             base.decision.spatial_proj = nn.Linear(200, base.d_model)
             base.decision.spatial_emb = nn.Parameter(torch.empty(base.d_model))
-        self.model = MultiWindowReadout(base, decision)
+            self.model = MultiWindowReadout(base, decision)
         state = {"base." + name: value for name, value in saved["model"].items()}
-        state.update(saved["new_input_embeddings"])
-        matched = self.model.load_state_dict(state, strict=True, assign=True)
-        self.model.bind_options_to_windows = config["unified"]["t1_option_window_binding"]
-        self.model.bind_options_to_halves = config["unified"]["t2_option_half_binding"]
-        if not (self.model.bind_options_to_windows and self.model.bind_options_to_halves):
-            raise ValueError("Use the final checkpoint with both trained option bindings")
+        if self.temporal:
+            state.update(saved["new_input_embeddings"])
+            matched = self.model.load_state_dict(state, strict=True, assign=True)
+            bindings = config["unified"]
+            self.model.bind_options_to_windows = bindings["t1_option_window_binding"]
+            self.model.bind_options_to_halves = bindings["t2_option_half_binding"]
+            if not (self.model.bind_options_to_windows and self.model.bind_options_to_halves):
+                raise ValueError("Use the final checkpoint with both trained option bindings")
+        else:
+            matched = base.load_state_dict(saved["model"], strict=True, assign=True)
         self.model.eval().requires_grad_(False)
         self.bank = LiveTextBank(text_encoder, torch.device("cpu"), keep=())
         self.receipt = {
-            "seed": config["seed"], "checkpoint_epoch_zero_based": saved["epoch"],
+            "variant": variant, "seed": config["seed"], "checkpoint_epoch_zero_based": saved["epoch"],
             "strict_load": True, "model_state_entries": len(state),
             "backbone_state_entries": sum(k.startswith("base.backbone.") for k in state),
-            "new_input_embeddings": sorted(saved["new_input_embeddings"]),
+            "new_input_embeddings": sorted(saved.get("new_input_embeddings", {})),
             "missing_keys": matched.missing_keys, "unexpected_keys": matched.unexpected_keys,
             "t1_window_binding": self.model.bind_options_to_windows,
             "t2_half_binding": self.model.bind_options_to_halves,
@@ -68,7 +97,19 @@ class LinkedEEGJev:
             "device": str(next(self.model.parameters()).device),
         }
 
+    def load_refusal(self, checkpoint):
+        """Load the trained Act weights from the same variant and seed as this decision model."""
+        if not self.temporal:
+            raise ValueError("Attach the refusal head to the main decision checkpoint")
+        saved = torch.load(checkpoint, weights_only=True, map_location="cpu", mmap=True)
+        head = self.model.base.decision.act_head
+        head.load_state_dict(saved["act_head"], strict=True, assign=True)
+        head.eval().requires_grad_(False)
+        self.refusal_loaded = True
+
     def _blocks(self, track, source, signals):
+        if not self.temporal:
+            raise ValueError("Use the main decision checkpoint for T1 and T2")
         expected = 2 if track == "T1" else 1
         if track not in ("T1", "T2") or len(signals) != expected:
             raise ValueError("T1 takes two short windows and T2 takes one long window")

@@ -7,9 +7,7 @@ from .inference import FS
 from .text import Question
 
 
-@torch.inference_mode()
-def answer_short_window(model, source, signal, prompt, options):
-    """Return the chosen option index and logits in the original order on CPU."""
+def _score(model, source, signal, prompt, options):
     labels = tuple(options)
     count = len(labels)
     if not 2 <= count <= 12:
@@ -27,6 +25,8 @@ def answer_short_window(model, source, signal, prompt, options):
         target=(0.0,) * count, values=(0.0,) * count,
     )
     head = model.model.base
+    if hasattr(head.backbone, "by_source"):
+        head.backbone.current = source
     view = model.bank.view([question])
     head.bank_tokens = view.tokens
     batch = decision.pack_questions(
@@ -36,7 +36,27 @@ def answer_short_window(model, source, signal, prompt, options):
     del batch["target"]
     batch["source"] = source
     batch["channel_ids"] = model.channel_ids[source]
-    logits = head(torch.from_numpy(eeg)[None], batch)["logits"][0]
+    output = head(torch.from_numpy(eeg)[None], batch)
+    logits = output["logits"][0]
     if logits.shape != (count,) or not torch.isfinite(logits).all():
         raise ValueError("Expected one finite score per offered label")
+    return logits, output["act_logits"][0]
+
+
+@torch.inference_mode()
+def answer_short_window(model, source, signal, prompt, options):
+    """Return the chosen option index and logits in the original order on CPU."""
+    logits, _ = _score(model, source, signal, prompt, options)
     return int(logits.argmax()), logits.tolist()
+
+
+@torch.inference_mode()
+def answer_or_refuse(model, source, signal, prompt, options):
+    """Return None on refusal, a candidate index otherwise, and the two sets of logits."""
+    if not model.refusal_loaded:
+        raise ValueError("Load the trained refusal head first")
+    logits, act_logits = _score(model, source, signal, prompt, options)
+    if act_logits.shape != (2,) or not torch.isfinite(act_logits).all():
+        raise ValueError("Expected finite answer and refusal logits")
+    answer = None if int(act_logits.argmax()) == 1 else int(logits.argmax())
+    return answer, logits.tolist(), act_logits.tolist()
