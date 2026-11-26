@@ -26,7 +26,7 @@ The first example asks two questions of the same synthetic window with the same 
 
 ## Choice, Noul, Score and answerability
 
-Use the matching decision, D3 and refusal weights for one variant and seed. The example prints a JSON object with all three output types on a simulated COG-BCI window.
+Download the matching decision, D3 and refusal weights from the [shared seed 0 directory](https://huggingface.co/dengzhe-hou/EEGJev/tree/main/weights/shared/seed0), or use the three files for another released variant and seed. The example prints a JSON object with all three output types on a simulated COG-BCI window.
 
 ~~~sh
 WEIGHTS=/path/to/weights/shared/seed0

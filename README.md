@@ -88,7 +88,7 @@ The example returns T1 at 0.50 and T2 at 1.00. See [the benchmark guide](bench/R
 
 | Path | Contents |
 | :--- | :--- |
-| [model/](model/README.md) | EEGJev CPU inference for the shared checkpoint |
+| [model/](model/README.md) | EEGJev CPU inference and a [runnable Choice, Noul and Score example](model/README.md#choice-noul-score-and-answerability) |
 | [bench/](bench/README.md) | v1.3 corpus reader and a T1/T2 scoring example |
 | [paper/v1.3/](paper/v1.3/README.md) | Aggregate results, supplementary comparisons and figure reproduction |
 
